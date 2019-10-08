@@ -1,0 +1,794 @@
+﻿<link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+
+@model AspNetRoleBasedSecurity.Models.PostDetails
+@{
+    ViewBag.Title = "Home Page";
+ 
+}
+
+<div class="container-fluid">
+    <div class="navigation">
+        <div class="row">
+            <ul class="topnav">
+                <li></li>
+                <li><a href="@Url.Action("GetAllPostUser", "Post")" class="fa fa-home"> Home</a></li>
+                <li><a href="@Url.Action("About", "Home")"><i class="fa fa-book"></i> OTC Diagram</a></li>
+                <li><a href="@Url.Action("Users", "post")" class="fa fa-users"> Users</a></li>
+                <li><a href="@Url.Action("UserProfile", "post")" class="fa fa-file-text-o"> About</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- END TOP NAVIGATION -->
+<!-- SEARCH FIELD AREA -->
+<section id="banner" data-video="Images/banner">
+    <div class="inner">
+        <header>
+            <h1>Infraction Portal</h1>
+            <p>
+                Learn about Knowledge sharing<br />
+            </p>
+        </header>
+    </div>
+    <video autoplay="" loop="">
+        <source src="~/Images/banner.mp4" type="video/mp4">
+        <source src="~/images/banner.webm" type="video/webm">
+    </video>
+</section>
+<!-- END SEARCH FIELD AREA -->
+<div class="container featured-area-default padding-30">
+    <div class="row">
+        <div class="col-md-8 padding-20">
+            <!-- LATEST VIDEO TUTORIAL AREA -->
+            <div class="row margin-bottom-30">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="featured-box">
+                            <div class="fb-heading">
+                                Tracks List of HCL-Apria
+
+                                <div class="fb-sub-heading">
+                                    <b>To Know about Tracks?</b> Click on the desired headings<br>
+                                </div>
+                            </div>
+                            <hr class="style-three">
+                            <div class="fat-content-small">
+
+                                <div class="col-md-12 col-md-offset-0">
+                                    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="6000" id="myCarousel">
+                                        <!--Slider images Start-->
+                                        <div class="carousel-inner" style="width:990px">
+                                            <div class="item active">
+
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = '2' })"><img src="~/Content/images/Tracks/medical claims.jpg" class="img-responsive" title="Medical Claims"></a></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post",new { Id = "14" } )"><img src="~/Content/images/Tracks/RQ.jpg" class="img-responsive" title="RQ"></a></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post",new { Id = '3' } )"><img src="~/Content/images/Tracks/rejection.jpg" class="img-responsive" title="Electronic Rejection"></a></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = '5' })"><img src="~/Content/images/Tracks/Payor change.jpg" class="img-responsive" title="Payor change"></a></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = '6' })"><img src="~/Content/images/Tracks/auth.jpg" class="img-responsive" title="Authorization"></a></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "28" })"><img src="~/Content/images/Tracks/Doc Traige.jpg" class="img-responsive" title="Doc Traige"></a></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "28" })"><img src="~/Content/images/Tracks/EQ.jpg" class="img-responsive" title="EQ"></a></div>
+                                            </div>
+
+
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "19" })"><img src="~/Content/images/Tracks/Letter process team.jpg" class="img-responsive" title="Letter Process Team"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "29" })"><img src="~/Content/images/Tracks/front office.jpg" class="img-responsive" title="Front office"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "16" })"><img src="~/Content/images/Tracks/clearing house.jpg" class="img-responsive" title="Clearing House"></a></div>
+                                            </div>
+
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "17" })"><img src="~/Content/images/Tracks/billing team.jpg" class="img-responsive" title="Billing Team"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "18" })"><img src="~/Content/images/Tracks/truck.jpg" class="img-responsive" title="Truck"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "20" })"><img src="~/Content/images/Tracks/PPMC-IB.jpg" class="img-responsive" title="PPMC-IB"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "21" })"><img src="~/Content/images/Tracks/PPMC-OB.jpg" class="img-responsive" title="PPMC-OB"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "22" })"><img src="~/Content/images/Tracks/Cash Post.jpg" class="img-responsive" title="Cash Post"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "30" })"><img src="~/Content/images/Tracks/Payor office.jpg" class="img-responsive" title="Payor office"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "31" })"><img src="~/Content/images/Tracks/customer serv.jpg" class="img-responsive" title="Customer Care"></a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-md-2 col-sm-6 col-xs-12"><a href="@Url.Action("Contact", "Post" ,new { Id = "25" })"><img src="~/Content/images/Tracks/RX-CMN.jpg" class="img-responsive" title="RX-CMN"></a></div>
+                                            </div>
+                                        </div>
+                                        <!--End of Slider images-->
+                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left" style="left:-10px"></i></a>
+
+                                        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END LATEST VIDEO TUTORIAL AREA -->
+            <!-- ARTICLE CATEGORIES SECTION -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid">
+                        <div class="fb-heading">
+                            Top Infractions
+                        </div>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="col-md-offset-5">
+
+                                <a input type="submit" class="btn btn-default fa fa-user-secret" href="@Url.Action("GetAllPost", "Post")">
+
+                                    Switch to Admin View
+
+                                </a>
+
+                            </div>
+                        }
+                    </div>
+                    @using (Html.BeginForm("GetAllPostUser", "Post", FormMethod.Get))
+                    {
+                        <div class="col-md-offset-7" style="width:500px">
+                            @Html.TextBox("search") <input type="submit"
+                                                           name="submit"
+                                                           value="Search" style="background-color:rgba(235, 118, 91, 1)" />
+                        </div>
+                        <br />
+                    <!-- buttons like Newest,votes,active,closed -->
+                    <div class="col-sm-pull-12">
+                        <div class="tabs-wrapper profile-tabs">
+                            <ul class="nav nav-tabs col-md-offset-6">
+                                <li class="active"><a href="#tab-activity" data-toggle="tab">Newest_Infraction</a></li>
+                                <li><a href="#tab-friends" data-toggle="tab">Answered</a></li>
+                                <li><a href="#tab-answer" data-toggle="tab">Unanswered</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab-activity">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="qlist-wrapper" class="flush-left">
+                                                <div id="question-mini-list">
+                                                    <div>
+                                                       
+                                                        <table class="table_data" border="1">
+                                                            
+                                                            <tbody>
+
+                                                                @foreach (var item in Model.Filter)
+                                                                {
+                                                                    var sts = "Accepted";
+                                                                    if (item.Status == sts)
+
+                                                                    {
+                                                                        var comments = Model.Comments.Where(Modelitems => (Modelitems.ArticleId.Equals(item.Id)) && (Modelitems.Com_mark) == true).ToList();
+                                                                        var cnt = Model.Comments.Where(Modelitems => (Modelitems.ArticleId == (item.Id)) && (Modelitems.Status_Com) == true).ToList();
+                                                                        var Ratings = Model.Comments.Where(Modelitems => Modelitems.ArticleId.Equals(item.Id)).Sum(Modelitems => Modelitems.Rating);
+                                                                        var user_track = Model.tagfilter.Where(Modelitems => (Modelitems.user.Equals(item.user))).Select(Modelitems => Modelitems.getProcess.ToString()).FirstOrDefault();
+
+
+                                                              
+                                                                    <tr>
+                                                                                 <td class="cp" style="background-color:white;width:45px;height:58px;padding:9px;position:relative;top:15px">
+                                                                                <div class="vote">
+                                                                                    <div class="mini-counts"><span>@Ratings</span></div>
+                                                                                    <div style="font-size:11px">votes</div>
+                                                                                </div>
+                                                                               </td>
+                                                                           <td class="cp" style="background-color:white;width:61px;position:relative;top:15px">
+                                                                            @if (@comments.Count() != 0)
+                                                                            {
+
+                                                                                if (@cnt.Count() != 0)
+                                                                                {
+                                                                                    <div title="one of the answers was accepted as the correct answer" class="status answered-accepted"style="height:58px;padding:9px">
+                                                                                        <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                        <div style="font-size:11px">answers</div>
+                                                                                    </div>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <div class="status answered" style="height:58px;padding:9px">
+                                                                                        <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                        <div style="font-size:11px">answers</div>
+                                                                                    </div>
+
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <div class="status unanswered" style="color:#000000;height:58px;padding:9px">
+                                                                                    <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                    <div style="font-size:11px">answers</div>
+                                                                                </div>
+                                                                            }
+
+                                                                            </td>
+
+
+                                                                        <td class="cp" style="background-color:white;width:61px;height:58px;padding:9px;position:relative;top:15px">
+                                                                            <div class="views" style="color:#000000">
+                                                                                @if (item.PageView >= 100000)
+                                                                                {
+                                                                                    var page = (item.PageView) / 1000 + "K";
+
+                                                                                    <div class="mini-counts" style="color:#000000"><span>@page</span></div>
+
+                                                                                }
+                                                                                else
+                                                                                    if (item.PageView >= 10000)
+                                                                                {
+                                                                                    var pag = ((item.PageView) / 1000D).ToString("0.#") + "K";
+
+
+                                                                                    <div class="mini-counts" style="color:#000000"><span>@pag</span></div>}
+
+
+                                                                                else
+                                                                                {
+                                                                                    var pa = item.PageView.ToString("0.#");
+                                                                                    <div class="mini-counts" style="color:#000000"><span>@pa</span></div>
+                                                                                }
+                                                                                <div style="font-size:11px">views</div>
+                                                                            </div>
+                                                                      </td>
+                                                                        <td style="background-color:white;padding:15px">
+                                                                            <div class="summary">
+                                                                                <a><h4>@Html.ActionLink(item.Title, "ViewDetails", new { Id = item.Id }) </h4></a>
+                                                                                <div class="tags">
+                                                                                    @foreach (string modelItem in item.getTags.Split(','))
+                                                                                    {
+                                                                                    <div class="btn btn-info btn-xs popup">
+                                                                                        @modelItem
+                                                                                    </div>
+                                                                                    }
+
+                                                                                </div>
+
+                                                                                @if (User.IsInRole("Admin"))
+                                                                                {
+                                                                                <div class="alert alert-info started" role="alert">
+                                                                                    Posted by
+                                                                                    <a href="@Url.Action("profileDetail", "Profile", new { user = item.user })"> @item.user </a>
+
+                                                                                    <br> <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+                                                                                </div>
+                                                                                }
+                                                                                else
+                                                                                {
+
+                                                                                <div class="alert alert-info started">
+                                                                                    From:
+                                                                                    <b> @user_track </b>
+                                                                                    <br>
+                                                                                    <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+                                                                                </div>
+                                                                                }
+
+
+                                                                            </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                  
+
+                                                                    }
+                                                                }
+                                                                </tbody>
+                                                            </table>
+                                                        
+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab-friends">
+                                    <div class="col-md-12">
+                                        <div id="qlist-wrapper" class="flush-left">
+                                            <div id="question-mini-list">
+                                                <div>
+                                                    <table class="table_data" border="1">
+                                                        
+                                                        <tbody>
+
+                                                            @foreach (var item in Model.Filter)
+                                                            {
+                                                                var sts = "Accepted";
+                                                                if (item.Status == sts)
+
+                                                                {
+                                                                    var user_track = Model.tagfilter.Where(Modelitems => (Modelitems.user.Equals(item.user))).Select(Modelitems => Modelitems.getProcess.ToString()).FirstOrDefault();
+
+                                                                    var comments = Model.Comments.Where(Modelitems => (Modelitems.ArticleId.Equals(item.Id)) && (Modelitems.Com_mark) == true).ToList();
+                                                                    var cnt = Model.Comments.Where(Modelitems => (Modelitems.ArticleId == (item.Id)) && (Modelitems.Status_Com) == true).ToList();
+                                                                    var Ratings = Model.Comments.Where(Modelitems => Modelitems.ArticleId.Equals(item.Id)).Sum(Modelitems => Modelitems.Rating);
+
+                                                                    if (@comments.Count() != 0)
+
+                                                                    {
+                                                                        <tr>
+                                                                            <td class="cp" style="background-color:white;width:45px;height:58px;padding:9px;position:relative;top:15px">
+                                                                              
+                                                                                    <div class="vote">
+                                                                                        <div class="mini-counts"><span>@Ratings</span></div>
+                                                                                        <div style="font-size:11px">votes</div>
+                                                                                    </div>
+                                                                                </td>
+                                                                               <td class="cp" style="background-color:white;width:61px;position:relative;top:15px">
+                                                                                @if (@comments.Count() != 0)
+                                                                                {
+
+                                                                                    if (@cnt.Count() != 0)
+                                                                                    {
+                                                                                        <div title="one of the answers was accepted as the correct answer" class="status answered-accepted" style="height:58px;padding:9px">
+                                                                                            <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                            <div style="font-size:11px">answers</div>
+                                                                                        </div>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <div class="status answered" style="height:58px;padding:9px">
+                                                                                            <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                            <div style="font-size:11px">answers</div>
+                                                                                        </div>
+
+                                                                                    }
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <div class="status unanswered" style="color:#000000;height:58px;padding:9px">
+                                                                                        <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                        <div style="font-size:11px">answers</div>
+                                                                                    </div>
+                                                                                }
+
+                                                                                </td>
+                                                                            <td class="cp" style="background-color:white;width:61px;height:58px;padding:9px;position:relative;top:15px">
+                                                                                <div class="views" style="color:#000000">
+                                                                                    @if (item.PageView >= 100000)
+                                                                                    {
+                                                                                        var page = (item.PageView) / 1000 + "K";
+
+                                                                                        <div class="mini-counts" style="color:#000000"><span>@page</span></div>
+
+                                                                                    }
+                                                                                    else
+if (item.PageView >= 10000)
+                                                                                    {
+                                                                                        var pag = ((item.PageView) / 1000D).ToString("0.#") + "K";
+
+
+                                                                                        <div class="mini-counts" style="color:#000000"><span>@pag</span></div>}
+
+
+                                                                                    else
+                                                                                    {
+                                                                                        var pa = item.PageView.ToString("0.#");
+                                                                                        <div class="mini-counts" style="color:#000000"><span>@pa</span></div>
+                                                                                    }
+                                                                                    <div style="font-size:11px">views</div>
+                                                                                </div>
+                                                                                </td>
+
+
+                                                                            <td style="background-color:white;padding:15px">
+                                                                                <div class="summary" style="width:560px">
+                                                                                    <a><h4>@Html.ActionLink(item.Title, "ViewDetails", new { Id = item.Id }) </h4></a>
+
+                                                                                    <div class="tags">
+                                                                                        @foreach (string modelItem in item.getTags.Split(','))
+                                                                                        {
+                                                                                            <div class="btn btn-info btn-xs popup">
+                                                                                                @modelItem
+                                                                                            </div>
+                                                                                        }
+
+                                                                                    </div>
+
+                                                                                    <div role="alert">
+                                                                                        @if (User.IsInRole("Admin"))
+                                                                                        {
+                                                                                            <div class="alert alert-info started">
+                                                                                                Posted by
+                                                                                                <a href="@Url.Action("profileDetail", "Profile", new { user = item.user })"> @item.user </a>
+                                                                                                <br> <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+                                                                                            </div> }
+                                                                                        else
+                                                                                        {
+                                                                                            <div class="alert alert-info started">
+                                                                                                From:
+                                                                                                <b> @user_track </b>
+                                                                                                <br>
+                                                                                                <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+                                                                                            </div>}
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                </td>
+                                                                            </tr>
+
+
+                                                                    }
+
+                                                                }
+                                                            }
+                                                            </tbody>
+                                                        </table>
+
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                                <div class="tab-pane fade" id="tab-answer">
+                                                    <div class="col-md-12">
+                                                        <div id="qlist-wrapper" class="flush-left">
+                                                            <div id="question-mini-list">
+                                                                <div>
+                                                                    <table class="table_data" border="1">
+                                                                        
+                                                                        <tbody>
+                                                                            <!-- Table Values -->
+
+                                                                            @foreach (var item in Model.Filter)
+                                                                            {
+                                                                                var sts = "Accepted";
+                                                                                if (item.Status == sts)
+
+                                                                                {
+                                                                                    var user_track = Model.tagfilter.Where(Modelitems => (Modelitems.user.Equals(item.user))).Select(Modelitems => Modelitems.getProcess.ToString()).FirstOrDefault();
+
+                                                                                    var comments = Model.Comments.Where(Modelitems => (Modelitems.ArticleId.Equals(item.Id)) && (Modelitems.Com_mark) == true).ToList();
+                                                                                    var cnt = Model.Comments.Where(Modelitems => (Modelitems.ArticleId == (item.Id)) && (Modelitems.Status_Com) == true).ToList();
+                                                                                    var Ratings = Model.Comments.Where(Modelitems => Modelitems.ArticleId.Equals(item.Id)).Sum(Modelitems => Modelitems.Rating);
+
+                                                                                    if (@comments.Count() == 0)
+
+                                                                                    {
+
+                                                                                        <tr>
+                                                                                            <td class="cp" style="background-color:white;width:45px;height:58px;padding:9px;position:relative;top:15px">
+                                                                                               
+                                                                                                    <div class="vote">
+                                                                                                        <div class="mini-counts"><span>@Ratings</span></div>
+                                                                                                        <div style="font-size:11px">votes</div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                               <td class="cp" style="background-color:white;width:61px;position:relative;top:15px">
+                                                                                                @if (@comments.Count() != 0)
+                                                                                                {
+
+                                                                                                    if (@cnt.Count() != 0)
+                                                                                                    {
+                                                                                                        <div title="one of the answers was accepted as the correct answer" class="status answered-accepted" style="height:58px;padding:9px">
+                                                                                                            <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                                            <div style="font-size:11px">answers</div>
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        <div class="status answered" style="height:58px;padding:9px">
+                                                                                                            <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                                            <div style="font-size:11px">answers</div>
+                                                                                                        </div>
+
+                                                                                                    }
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    <div class="status unanswered" style="color:#000000;height:58px;padding:9px">
+                                                                                                        <div class="mini-counts"><span>@comments.Count()</span></div>
+                                                                                                        <div style="font-size:11px">answers</div>
+                                                                                                    </div>
+                                                                                                }
+                                                                                                </td>
+                                                                                            <td class="cp" style="background-color:white;width:61px;height:58px;padding:9px;position:relative;top:15px">
+                                                                                                <div class="views" style="color:#000000">
+                                                                                                    @if (item.PageView >= 100000)
+                                                                                                    {
+                                                                                                        var page = (item.PageView) / 1000 + "K";
+
+                                                                                                        <div class="mini-counts" style="color:#000000"><span>@page</span></div>
+
+                                                                                                    }
+                                                                                                    else
+if (item.PageView >= 10000)
+                                                                                                    {
+                                                                                                        var pag = ((item.PageView) / 1000D).ToString("0.#") + "K";
+
+
+                                                                                                        <div class="mini-counts" style="color:#000000"><span>@pag</span></div>}
+
+
+                                                                                                    else
+                                                                                                    {
+                                                                                                        var pa = item.PageView.ToString("0.#");
+                                                                                                        <div class="mini-counts" style="color:#000000"><span>@pa</span></div>
+                                                                                                    }
+                                                                                                    <div style="font-size:11px">views</div>
+                                                                                                </div>
+
+                                                                                                </td>
+                                                                                            <td style="background-color:white;padding:15px">
+                                                                                                <div class="summary" style="width:560px">
+                                                                                                    <a><h4>@Html.ActionLink(item.Title, "ViewDetails", new { Id = item.Id }) </h4></a>
+
+                                                                                                    <div class="tags">
+                                                                                                        @foreach (string modelItem in item.getTags.Split(','))
+                                                                                                        {
+                                                                                                            <div class="btn btn-info btn-xs popup">
+                                                                                                                @modelItem
+                                                                                                            </div>
+                                                                                                        }
+
+                                                                                                    </div>
+
+
+                                                                                                    @if (User.IsInRole("Admin"))
+                                                                                                    {
+                                                                                                        <div class="alert alert-info started">
+                                                                                                            Posted by
+                                                                                                            <a href="@Url.Action("profileDetail", "Profile", new { user = item.user })"> @item.user </a>
+                                                                                                            <br> <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+
+                                                                                                        </div> }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        <div class="alert alert-info started">
+                                                                                                            From:
+                                                                                                            <b> @user_track </b>
+                                                                                                            <br>
+                                                                                                            <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                </div>
+                                                                                                </td>
+                                                                                            </tr>
+
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            </tbody>
+                                                                        </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                     }
+                                </div>
+                            </div>
+                        </div>
+        <!-- SIDEBAR STUFF -->
+                                <div class="col-md-4 padding-20">
+                                    <div class="row margin-bottom-30">
+                                        <div class="col-md-12 ">
+                                            <div class="support-container">
+                                                <h2 class="support-heading">Need To Post Infraction?</h2>
+                                                <!-- If you like to post infraction to other Tracks <a href="Home/Infraction1">Click Here</a>. -->
+                                                If you like to post infraction to other Tracks <a>@Html.ActionLink("Click Here", "AddPost", "Post")</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-20">
+                                        <div class="col-md-12">
+                                            <div class="fb-heading-small">
+                                                Popular Infractions
+
+                                            </div>
+                                            <hr class="style-three">
+                                            <div class="fat-content-small padding-left-10">
+                                                @foreach (var items in Model.popular)
+                                                {
+                                                    var sts = "Accepted";
+                                                    if (items.Status == sts)
+                                                    {
+
+                                                        <ul> <li><i class="fa fa-file-text-o"></i>@Html.ActionLink(items.Title, "ViewDetails", new { Id = items.Id })</li></ul>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <!-- POPULAR TAGS (SHOW MAX 20 TAGS) -->
+                                    <div class="row margin-top-20">
+                                        <div class="col-md-12">
+                                            <div class="fb-heading-small">
+                                                All Tags
+
+                                            </div>
+                                            <hr class="style-three">
+
+                                            <div class="fat-content-tags padding-left-10">
+                                                @foreach (var item in Model.Track)
+                                                {
+                                                    <div class="btn btn-default btn-o btn-sm">
+
+                                                        @Html.ActionLink(item.Track_Name, "Contact", new { Id = item.Id })
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- END POPULAR TAGS (SHOW MAX 20 TAGS) -->
+                                </div>
+        <!-- END SIDEBAR STUFF -->
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="container-fluid footer marg30">
+    <!-- FOOTER COLUMN ONE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">How it works</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Action("UserProfile", "Post")#div6">Details about infraction portal</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN ONE -->
+    <!-- FOOTER COLUMN TWO -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Categories</div>
+            <div class="footer-body">
+                <ul>
+
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div1")">Infractions</a> </li>
+                    <li> <a href="@Url.Action("About", "Home")">OTC</a> </li>
+                    <li> <a href="@Url.Action("Tags", "Post")">Tags</a> </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN TWO  -->
+    <!-- FOOTER COLUMN THREE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Popular Asks</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Rewards</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div4")">Rate a specific Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div3")">How to Post Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Know more about Badges</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN THREE -->
+
+</div>
+<!-- END FOOTER -->
+<!-- COPYRIGHT INFO -->
+<div class="container-fluid footer-copyright marg30">
+    <div class="container">
+        <div class="pull-left">
+            Copyright © 2019 HCL Infraction portal
+
+        </div>
+
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+
+
+
+<script>
+    $('.carousel[data-type="multi"] .item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < 4; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
+
+<script>
+    $('table.table_data').each(function () {
+        var currentPage = 0;
+        var numPerPage = 20;
+        $('tbody').each(function () {
+            var list = $(this).children('tr');
+            $(this).html(list.get().reverse())
+        });
+
+        var $table = $(this);
+
+
+
+        $table.bind('repaginate', function () {
+            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+        });
+        $table.trigger('repaginate');
+        var numRows = $table.find('tbody tr').length;
+        var numPages = Math.ceil(numRows / numPerPage);
+        var $pager = $('<div class="pager"></div>');
+        for (var page = 0; page < numPages; page++) {
+            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                newPage: page
+            }, function (event) {
+                currentPage = event.data['newPage'];
+                $table.trigger('repaginate');
+                $(this).addClass('active').siblings().removeClass('active');
+            }).appendTo($pager).addClass('clickable');
+        }
+
+        $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+
+
+    });
+
+</script>
+
+
+

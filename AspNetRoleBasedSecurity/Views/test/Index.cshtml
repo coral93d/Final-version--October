@@ -1,0 +1,39 @@
+﻿<style>
+    #viewContent {
+        border-top: solid 2px #CCC;
+    }
+
+        #viewContent > form > span {
+            display: block;
+            color: red;
+        }
+
+        #viewContent h3 {
+            border-bottom: none;
+        }
+</style>
+
+@model AspNetRoleBasedSecurity.Models.ImportExcel
+
+@{ ViewBag.Title = "Import Excel File into Database Table using SqlBulkCopy Class";}
+<h3>New user bulk upload</h3>
+<a class="active" href="@Url.Action("Index", "Account")"><i class="fa fa-fw"style="margin-left:650px"></i>Back</a>
+<div id="viewContent">
+    <br/>
+    
+    @using (Html.BeginForm("Index", "test", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+        @Html.TextBoxFor(m => m.file, new { type = "file"})
+        <br />
+        <h3 style="font-style:oblique">@ViewBag.Result</h3>
+        <button id="submitButton"class="btn btn-default" type="submit">Submit</button>
+        @Html.ValidationMessageFor(model => model.file)
+        <br />
+
+   // @Html.ActionLink("Add To Cart", "CreateBulkIdentityUsers", null, new { id = "myLink" })
+   <a input type="submit" class="btn btn-default fa fa-registered" href="@Url.Action("CreateBulkIdentityUsers", "test",new { id = "myLink" })">
+       Bulk Register
+        </a>
+    }
+</div>
+

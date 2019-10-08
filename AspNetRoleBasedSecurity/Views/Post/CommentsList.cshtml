@@ -1,0 +1,52 @@
+﻿<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<script src="js/jquery.min.js"></script>
+
+<script src="js/imtech_pager.js"></script>
+
+<div class="example">
+
+    <h3><a href="#">Paragraph pagination sample</a></h3>
+
+    <div id="content">
+
+        <div class="z">Sergey LUKYANENKO - The Boy and the Darkness - Chapter 1. The Sun Kitten.</div>
+        
+     
+        <div class="z">- More like a kitten.</div>
+        
+        <div class="z">- Hardly better, - stated the Kitten sadly and stretched out. And I didn't think of anything better than repeating:</div>
+    
+        <div class="z">- Who're you?</div>
+      
+        <div class="z">- But we have already arrived at a consensus! - said the Kitten with sudden hurt. - A sun rabbit, or more precisely - a kitten, because I look far more like one! What is there not to understand?</div>
+ 
+        <div class="z">I found myself tongue-tied. Well, naturally, a small green animal that eats stones would simply be - a small green stone-eater. Simple. And a sun rabbit is a sun kitten, because he looks nothing like a rabbit.</div>
+     
+        <div class="z">- So you mean - any rabbit can come to life if one just calls it? - I asked cautiously. For some reason it seemed to me the Kitten would be hurt at the question again. But he just shook his head proudly:</div>
+      
+        <div class="z">- As if! Any! Only True Light, reflected in a True Mirror, can come to life.</div>
+     
+    </div>
+
+    <div id="pagingControls"></div>
+
+</div>
+
+<script type="text/javascript">
+
+var pager = new Imtech.Pager();
+
+$(document).ready(function() {
+
+    pager.paragraphsPerPage = 5; // set amount elements per page
+
+    pager.pagingContainer = $('#content'); // set of main container
+
+    pager.paragraphs = $('div.z', pager.pagingContainer); // set of required containers
+
+    pager.showPage(1);
+
+});
+
+</script>

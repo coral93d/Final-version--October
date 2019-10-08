@@ -1,0 +1,137 @@
+﻿
+@model IEnumerable<AspNetRoleBasedSecurity.Models.PostModel>
+
+
+
+
+<div id="home" class="tab-pane in active">
+    <div class="row">
+        <br />
+        <div class="col-xs-6 col-sm-3 center">
+            <span class="profile-picture">
+                <img class="editable img-responsive" alt="Avatar" id="avatar2" src="~/Content/images/Avatar.png">
+            </span>
+
+            <div class="space space-4"></div>
+        </div>
+
+        <!-- User Name -->
+        <div class="col-xs-6">
+            <h4 class="blue">
+
+                <span class="middle">@User.Identity.Name </span>
+
+
+            </h4>
+
+            <div class="hr hr-8 dotted"></div>
+
+
+        </div>
+    </div>
+    <br />
+    <!--List Infra-->
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- buttons like Newest,votes,active,closed -->
+                <div class="grid ai-center mb16">
+                    <h4>Infraction Posted</h4>
+                    <div class="grid--cell fl1 fs-body3"></div>
+                    <div class="grid--cell">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a href="#">All</a></li>
+                            <li><a href="#">Question</a></li>
+                            <li><a href="#">Answers</a></li>
+                            <li><a href="#">Newest</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- posted infraction -->
+                <div id="qlist-wrapper" class="flush-left">
+                    <div id="question-mini-list">
+                        <div>
+                            @foreach (var item in Model)
+
+                            {
+
+                                <div class="question-summary narrow">
+                                    <div class="cp">
+
+
+                                    </div>
+                                    <div class="summary">
+                                        <h4>
+                                            <a>@Html.ActionLink(item.Title, "EditPostDetails", new { Id = item.Id })</a>
+                                        </h4>
+
+                                        <div class="tags">
+                                            @foreach (string modelItem in item.getTags.Split(','))
+                                            {
+                                                <div class="btn btn-info btn-xs">
+                                                    @modelItem
+                                                </div>
+                                            }
+                                        </div>
+
+                                        <div class="started">
+
+                                            @Html.DisplayFor(modelItem => item.DatePosted)
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Tags -->
+                <div class="grid">
+                    <h4>
+                        Tags
+                    </h4>
+
+                </div>
+
+                <div id="qlist-wrapper" class="flush-left">
+                    <div id="question-mini-list">
+                        <div>
+                            <br />
+                            @foreach (var item in Model)
+                            {
+                                foreach (string modelItem in item.getTags.Split(','))
+                                {
+
+                                    <div class="btn btn-default btn-o btn-sm">
+
+
+                                        @modelItem
+
+                                        <br />
+
+                                    </div>
+                                }
+
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>

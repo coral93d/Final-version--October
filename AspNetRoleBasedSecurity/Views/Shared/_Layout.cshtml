@@ -1,0 +1,254 @@
+﻿<html lang="en">
+
+<head>
+
+
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Infraction Portal</title>
+
+    <!-- LOADING STYLESHEETS -->
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+
+    <link href="~/content/css/bootstrap.css" rel="stylesheet">
+
+    <link href="~/content/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/content/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+    <meta name="description" content="The description of my page" />
+
+</head>
+
+<body style="overflow-x:hidden">
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <!-- END COPYRIGHT INFO -->
+    <!-- LOADING MAIN JAVASCRIPT -->
+
+    <script src="assets/js/jquery.min.js"></script>
+
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+
+    <script src="assets/js/skel.min.js"></script>
+
+    <script src="assets/js/util.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script src="js/jquery-2.2.4.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src='https://cdn.rawgit.com/VPenkov/okayNav/master/app/js/jquery.okayNav.js'></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+
+    <script src="Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+
+</html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="container">
+
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+            </button>
+
+            @using Microsoft.AspNet.Identity
+
+            @if (User.IsInRole("Admin"))
+
+            {
+
+                <a href="@Url.Action("GetAllPost", "Post")"><img src="~/Content/Images/Infraction icon.png" class="img-center" height="48" width="260" /> </a>
+
+            }
+
+            else
+
+            {
+
+                <a href="@Url.Action("GetAllPostUser", "Post")"><img src="~/Content/Images/Infraction icon.png" class="img-center" height="48" width="260" /> </a>
+
+            }
+
+        </div>
+
+
+
+        <div class="navbar-collapse collapse">
+
+
+
+
+
+
+
+
+
+            @Html.Partial("_LoginPartial")
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+<body>
+
+    <div class="container body-content">
+
+        @RenderBody()
+
+
+
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jqueryui")
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+
+
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            function setTotalNotification(totalNotif) {
+                console.log(totalNotif);
+                $("#messages").html("<p> Total Notif:" + totalNotif + "</p>");
+            }
+
+            var hub = $.connection.notificationHub;
+
+            //Client Call
+            hub.client.broadcaastNotif = function (totalNotif) {
+                setTotalNotification(totalNotif)
+            };
+
+
+            //$.connection.hub.start().done(function () { });
+
+            $.connection.hub.start()
+                .done(function () {
+                    console.log("Hub Connected!");
+
+                    //Server Call
+                    hub.server.getNotification();
+
+                })
+                .fail(function () {
+                    console.log("Could not Connect!");
+                });
+        });
+    </script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/DataTables/datatables.css">
+
+    <script type="text/javascript" charset="utf8" src="~/Content/DataTables/datatables.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/imtech_pager.js"></script>
+
+
+
+</body>

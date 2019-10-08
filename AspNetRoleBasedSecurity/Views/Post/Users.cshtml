@@ -1,0 +1,240 @@
+﻿@model AspNetRoleBasedSecurity.Models.AllUsers
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="col-sm-2 wrapper">
+            <div class="sidebar-hotel">
+                <div class="side-in">
+
+                    <div class="sidenav">
+                        <br>
+
+                        <ul class="nav nav-pills nav-stacked active vl">
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                            else
+                            {
+                                <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                            <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+
+                            <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                            <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+
+
+                        </ul><br>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        @using (Html.BeginForm("Users", "Post", FormMethod.Get))
+        {
+            <div class="content-hotel">
+                <div id="content" class="snippet-hidden col-md-9" style="width:100%">
+
+                    <div id="mainbar-full">
+                        ::before
+                        <h1 class="fs-headline1 mb24">
+                            All Users
+                        </h1>
+                        @Html.TextBox("search") <input type="submit"
+                                                       name="submit"
+                                                       value="Search" />
+                        <br /><br /><br />
+                        <div id="user-browser" class="grid-layout">
+                            <br />
+                            @foreach (var item in Model.Users)
+                            {
+
+                                var gen = "Male";
+                                var gen1 = "Female";
+                                var professionalm = "Professional";
+                                var casualm = "casual";
+
+
+                                if (item.Gender == gen)
+
+                                {
+                                    if (item.ProfilePictureTheme == professionalm)
+                                    {
+                                        <div class="user-gravatar48">
+
+                                            <img width="80" height="80" class="avatar-user" alt="" src="~/Images/d1.jpg">
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        if (item.ProfilePictureTheme == casualm)
+
+                                        {
+                                            <div class="user-gravatar48">
+
+                                                <img width="80" height="80" class="avatar-user" alt="" src="~/Images/CasualMale_1.jpg">
+
+                                            </div>
+                                        }
+
+                                        else
+                                        {
+                                            <div class="user-gravatar48">
+
+                                                <img width="80" height="80" class="avatar-user" alt="" src="~/Images/StandardMale_1.jpg">
+
+                                            </div>
+                                        }
+                                    }
+                                }
+
+
+
+                                else
+                                {
+                                    if (item.Gender == gen1)
+
+                                    {
+
+                                        if (item.ProfilePictureTheme == professionalm)
+                                        {
+                                            <div class="user-gravatar48">
+
+                                                <img width="80" height="80" class="avatar-user" alt="" src="~/Images/ProffFemale_1.jpg">
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            if (item.ProfilePictureTheme == casualm)
+
+                                            {
+                                                <div class="user-gravatar48">
+
+                                                    <img width="80" height="80" class="avatar-user" alt="" src="~/Images/CasualFemale_1.jpg">
+
+                                                </div>
+                                            }
+
+                                            else
+                                            {
+                                                <div class="user-gravatar48">
+
+                                                    <img width="80" height="80" class="avatar-user" alt="" src="~/Images/StandardFemale_1.jpg">
+
+                                                </div>
+                                            }
+                                        }
+                                    }
+
+                                    else
+
+                                    {
+
+                                        <div class="user-gravatar48">
+
+                                            <img width="80" height="80" class="avatar-user" alt="" src="@Url.Content("~/Content/images/Empty.png")">
+
+                                        </div>
+
+                                    }
+                                }
+
+                                <br />
+
+
+                                <div class="grid-layout--cell user-info  user-hover" style="padding: 8px 4px 12px; border-bottom-color: rgb(121, 120, 120); border-bottom-width: 1px; border-bottom-style: dotted; min-width: 150px;">
+
+                                    <div class="user-details">
+                                        <a href="@Url.Action("profileDetail", "Profile", new { user = item.user })"> @item.user </a>
+                                        <br />
+
+                                        <a href="/questions/tagged/javascript">@Html.DisplayFor(modelItem => item.Process)</a>
+                                        <div class="user-tags">
+                                            @foreach (string modelItem in item.getProcess.Split(','))
+                                            {
+                                                <a href="@Url.Action("Tags", "Post")">@modelItem</a>
+
+
+                                            }
+
+                                        </div>
+                                        <br />
+                                    </div>
+
+
+
+                                </div>
+                                <br />   <br />
+                            }
+                        </div>
+
+                        <br /><br /><br />
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<!-- FOOTER -->
+<div class="container-fluid footer marg30" style="position:relative">
+    <!-- FOOTER COLUMN ONE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">How it works</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Action("UserProfile", "Post")#div6">Details about infraction portal</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN ONE -->
+    <!-- FOOTER COLUMN TWO -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Categories</div>
+            <div class="footer-body">
+                <ul>
+
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div1")">Infractions</a> </li>
+                    <li> <a href="@Url.Action("About", "Home")">OTC</a> </li>
+                    <li> <a href="@Url.Action("Tags", "Post")">Tags</a> </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN TWO -->
+    <!-- FOOTER COLUMN THREE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Popular Asks</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Rewards</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div4")">Rate a specific Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div3")">How to Post Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Know more about Badges</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN THREE -->
+
+</div>
+<!-- END FOOTER -->
+<!-- COPYRIGHT INFO -->
+<div class="container-fluid footer-copyright marg30" style="position:relative">
+    <div class="container">
+        <div class="pull-left">
+            Copyright © 2019 HCL Infraction portal
+        </div>
+    </div>
+</div>

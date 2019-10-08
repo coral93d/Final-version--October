@@ -1,0 +1,65 @@
+﻿@model AspNetRoleBasedSecurity.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="background-image:url('/Images/hcl.png');background-repeat:repeat;background-size:cover;height:600px">
+    <div class="col-md-12"style="top:60px">
+        <div class="div2">
+            <h3>@ViewBag.Title</h3>
+            <div class="col-md-8 col-md-pull-5">
+
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+
+                    <div class="col-md-9 col-md-offset-8 col-md-pull-0">
+                        <div id="answers-header" class="alert alert-warning" style="background-color:rgba(211, 236, 255, 1);border-color:white" role="alert">
+
+                            <center>You must be logged in to  <strong><i class="c">Proceed Further</i></strong></center>
+                            <hr class="new2">
+                            <center>Log in below </center>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="col-md-10 col-md-offset-7">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-7">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-7 col-md-offset-4">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </div>
+                        }
+                </section>
+            </div>
+        </div>
+    </div>
+</div> 
+ 
+        
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

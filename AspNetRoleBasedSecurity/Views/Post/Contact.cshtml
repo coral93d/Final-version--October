@@ -1,0 +1,122 @@
+﻿@model AspNetRoleBasedSecurity.Models.Tags
+
+<div class="container-fluid">
+    <div class="col-sm-2 wrapper">
+        <div class="sidebar-hotel">
+            <div class="side-in">
+
+                <div class="sidenav">
+                    <br>
+
+                    <ul class="nav nav-pills nav-stacked active vl">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                        else
+                        {
+                            <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                        <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+
+                        <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                        <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+
+
+                    </ul><br>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="content-hotel">
+        <div class="left-right">
+            <div class="left">
+
+                <div class="col-lg-12">
+                    <br />
+                    <div class="dum col-mod-offset-3" style='width: 100%; height: 220px; background-image: url("/Images/vBanner1.jpg"); background-repeat: no-repeat; background-size: cover;'>
+
+                    </div>
+                    <div class="box">
+                        <br />
+                       @if (User.IsInRole("Admin"))
+                       {
+                        <div class="col-md-offset-11">
+                            <a input type="submit" style="background-color:rgba(255, 204, 91, 1);" class="btn btn-default fa fa-edit" href="@Url.Action("EditTag", "Post",new { Id = Model.Id })">
+                                Edit
+
+                            </a>
+
+                        </div>
+                       
+                                    }
+                         <header class="panel-headingg tab-bg-primary ">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#description">Description</a>
+                                </li>
+                                <h4 class="col-md-offset-5">  @Model.Track_Name</h4>
+                               
+                            </ul>
+                        </header>
+                        
+
+                        <div class="panel-bodyy">
+                            <div class="tab-content">
+
+                                <div id="description" class="tab-pane active">
+
+                                    <div class="col-sm-12">
+                                        <section class="panel1">
+                                            <header class="panel-heading" style="background:rgba(36, 118, 96, 1);color:white">
+                                                Trackwise Summary
+                                            </header>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Track </th>
+                                                        <th>Process Description</th>
+                                                        <th style="width:10%">On time</th>
+                                                        <th>Business critical error accuracy</th>
+                                                        <th>Compliance critical error accuracy</th>
+                                                        <th>End user critical error accuracy</th>
+                                                        <th style="width:25%">Recent Updates</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>@Model.Track_Name </td>
+                                                        <td>
+                                                            @Model.Descripition
+                                                        </td>
+                                                        <td>@Model.On_time</td>
+                                                        <td>@Model.BC</td>
+                                                        <td>@Model.BC</td>
+                                                        <td>@Model.EU</td>
+                                                        <td data-toggle="modal" href="#myModal"style="white-space:pre-line;">@Model.Updates
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

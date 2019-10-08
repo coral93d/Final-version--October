@@ -1,0 +1,69 @@
+﻿
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <br>
+
+            <ul class="nav nav-pills nav-stacked active vl">
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                else
+                {
+                    <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+
+                <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tags</a></li>
+
+                <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+
+
+            </ul><br>
+
+        </div>
+       
+        <div class="col-sm-10">
+
+             <br/>
+
+            <img src="~/Content/images/OTC_DIAGRAM.jpg" alt="Planets" usemap="#planetmap">
+
+            <map name="planetmap">
+
+                <!-- middle line -->
+                <area shape="circle" coords="635,190,33" title="Payor Off" alt="Payor Office" href="@Url.Action("Contact", "Post" ,new { Id = "30" })">
+                <area shape="circle" coords="555,190,33" title="Clearing House" alt="Clearing House" href="@Url.Action("Contact", "Post"  ,new { Id = "16" })">
+                <area shape="circle" coords="475,190,34" title="Billing Team" alt="Billing Team" href="@Url.Action("Contact", "Post"  ,new { Id = "17" })">
+                <area shape="circle" coords="393,190,34" title="Delivery" alt="Delivery" href="@Url.Action("Contact", "Post"  ,new { Id = "18" })">
+                <area shape="circle" coords="230,190,33" title="Fax Intake team" alt="Fax Intake team" href="@Url.Action("Contact", "Post" ,new { Id = "4" })">
+                <area shape="circle" coords="310,195,33" title="EQ Team" alt="EQ Team" href="@Url.Action("Contact", "Post"  ,new { Id = "9" })">
+                <area shape="circle" coords="150,190,34" title="Front Office" alt="ref front" href="@Url.Action("Contact", "Post"  ,new { Id = "29" })">
+                <area shape="circle" coords="715,190,33" title="Medical Claims" alt="Medical Claims" href="@Url.Action("Contact", "Post"  ,new { Id = "2" })">
+                <area shape="circle" coords="795,190,33" title="Letter Proc Vendor" alt="Letter Proc Vendor" href="@Url.Action("Contact", "Post"  ,new { Id = "19" })">
+                <area shape="circle" coords="875,190,33" title="PPMC IB" alt="PPMC IB" href="@Url.Action("Contact", "Post" ,new { Id = "20" })">
+                <area shape="circle" coords="958,190,33" title="PPMC OB" alt="PPMC OB" href="@Url.Action("Contact", "Post"  ,new { Id = "21" })">
+                <area shape="circle" coords="555,62,33" title="ER" alt="ER" href="@Url.Action("Contact", "Post"  ,new { Id = "3" })">
+                <area shape="circle" coords="715,62,33" title="Cash-Posting Team" alt="Cash-Posting Team" href="@Url.Action("Contact", "Post"  ,new { Id = "22" })">
+                <!-- middle line -->
+            
+                <area shape="circle" coords="230,490,33" title="Customer Service" alt="Customer Service" href="@Url.Action("Contact", "Post"  ,new { Id = "31" })">
+                <area shape="circle" coords="480,490,33" title="RX/CMN Team" alt="RX/CMN Team" href="@Url.Action("Contact", "Post"  ,new { Id = "25" })">
+                <area shape="circle" coords="560,490,33" title="Authorization" alt="Authorization" href="@Url.Action("Contact", "Post"  ,new { Id = "6" })">
+                <area shape="circle" coords="710,490,33" title="Payor Change" alt="Payor Change" href="@Url.Action("Contact", "Post"  ,new { Id = "5" })">
+               
+                <area shape="circle" coords="395,438,32" title="RX follow up Team" alt="RX follow up Team" href="@Url.Action("Contact", "Post" ,new { Id = "26" })">
+                <area shape="circle" coords="395,580,32" title="RQ Team" alt="RQ Team" href="@Url.Action("Contact", "Post"  ,new { Id = "14" })">
+
+
+
+
+
+            </map>
+        </div>
+    </div>
+
+
+</div>

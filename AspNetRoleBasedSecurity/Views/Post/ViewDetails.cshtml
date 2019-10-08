@@ -1,0 +1,491 @@
+﻿@model AspNetRoleBasedSecurity.Models.PostModel
+
+@{
+    // ViewBag.Tags = Model.Tags;
+    ViewBag.Title = Model.Title;
+    var comments = (IEnumerable<AspNetRoleBasedSecurity.Models.ArticlesComment>)ViewBag.Comments;
+    var ratingSum = ViewBag.RatingSum;
+    var ratingCount = ViewBag.RatingCount;
+
+    decimal rating = 0;
+
+    foreach (var c in comments)
+    {
+        if (c.Com_mark == true && ratingCount > 0)
+        {
+
+            rating = (ratingSum / ratingCount);
+        }
+    }
+    var totalRating = decimal.Parse(rating.ToString());
+}
+
+
+
+<div class="container-fluid">
+    <div class="col-sm-2 wrapper">
+        <div class="sidebar-hotel">
+            <div class="side-in">
+
+                <div class="sidenav">
+                    <br>
+
+                    <ul class="nav nav-pills nav-stacked active vl">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                    <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                        else
+                        {
+                    <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                        <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+
+                        <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                        <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+
+
+                    </ul><br>
+                   
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="content-hotel">
+        <div class="left-right">
+            <div class="left">
+                <div class="col-sm-7">
+                    <h3>
+                        @Model.Title &nbsp;
+
+                    @if (Model.Status == "Refer Back")
+                    {
+
+                        @Html.ActionLink(" ", "EditPostDetails", new { id = Model.Id }, new { @class = "fa fa-edit", style = "color:orange" })
+
+                    }
+                </h3>
+
+                    <div class="col-md-offset-0 col-md-12" style="position: absolute; left: 500px; top: 48px">
+                        <span class="starFadeN" id="sRate1"></span><span class="starFadeN" id="sRate2"></span><span class="starFadeN" id="sRate3"></span><span class="starFadeN" id="sRate4"></span><span class="starFadeN" id="sRate5"></span>
+                    </div>
+                    <br />                   
+                        <div class="summar"style="white-space: pre-line;">@Html.DisplayFor(model => model.Subject)</div>
+                           <br />@if (User.IsInRole("Admin"))
+                                {<div class="alert alert-success startedd" role="alert">
+                            <font size="2">
+                                Samples:  @Html.DisplayFor(model => model.Samples)
+                            </font>
+                        </div>}
+                        <br />
+                        <br />
+
+                        <div class="tags">
+                            @foreach (string modelItem in Model.getTags.Split(','))
+                            {
+                                <div class="btn btn-info btn-xs popup">
+                                    @modelItem
+                                </div>
+
+                            }
+                        </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="alert alert-danger started" role="alert">
+                            Posted by
+                            <a href="@Url.Action( "profileDetail", "Profile",new { user = Model.user })">@Model.user </a>
+                            <br /> <i>@Html.DisplayFor(model => model.DatePosted)</i>
+
+                        </div>
+                       }else{
+                       <div class="alert alert-danger started" role="alert">
+                           Posted on <br>                       
+                             <i>@Html.DisplayFor(model => model.DatePosted)</i>
+                        </div>
+                        }
+                        <br />
+                        <br>
+                        <hr />
+
+                        <h4><label> Answers : </label></h4>  <br />
+
+
+                        @foreach (var c in comments)
+                        {
+                            if (c.Com_mark == true)
+                            {
+                            <div class="question-summary narrow">
+
+                                <div class="cp">
+                                    <div class="votes">
+                                        <div class="col-sm-12" style="bottom:35px;left:15px">
+                                           
+
+                                            @if (User.IsInRole("Admin"))
+                                            {
+                                                var count = 1;
+                                                foreach (string modelItemd in Model.getTags.Split(','))
+                                                {
+                                                    var ccnt = Model.getTags.Split(',').Count();
+
+
+
+                                                    if (modelItemd == ViewBag.Tags)
+                                                    {
+                                                                   <label class="form-group" style="color:#45A163 !important; top:50px">
+                                                                    @Html.CheckBoxFor(modelItem => c.Status_Com,
+          new { @id = c.CommentId, @class = "with-font" })
+                                                                    <label for="Maskasanswer">  </label>
+                                                                    <br />Mark As Answer
+                                                                </label>
+
+                                                        break;
+                                                    }
+
+                                                    else
+                                                    {
+                                                        if (ccnt <= count)
+                                                        {
+                                                                    <label class="form-group" style="color:darkslategrey !important;">
+                                                                    @Html.CheckBoxFor(modelItem => c.Status_Com,
+new { @id = c.CommentId, @class = "with-font", @disabled = "disabled" })
+                                                                    <label for="Maskasanswer">  </label> <br /> No Access
+                                                                    </label>
+                                                        }
+                                                    }
+                                                    count = count + 1;
+                                                }
+                                            }
+                                            else
+                                            {
+                                             <label class="form-group">
+                                            @Html.CheckBoxFor(modelItem => c.Status_Com,
+          new { @id = c.CommentId, @class = "with-font", @disabled = "disabled" })
+
+                                        <label for="Maskasanswer">  </label>
+                                    </label>
+                                            }
+
+                                            
+                                        </div>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="col-sm-12" style="right: 60px; bottom: 110px;">
+                                                <label class="form-group" style="color:rgba(51, 122, 183, 1) !important; top:50px">
+                                                    @Html.CheckBoxFor(modelItem => c.Com_mark,
+                                                           new { @id = c.CommentId, @class = "with-fo" })
+                                                    <label for="Maskasanswer"> </label>
+                                                    <br /> Publish
+                                                </label>
+                                            </div>
+                                        }
+
+                                        </div>
+                                </div>
+                                
+                                <div class="summar"style="width:460Px;">
+                                    @Html.Raw(c.Comments.Replace("\n", "<br />")) &nbsp;
+                                    @if (c.User_n == User.Identity.Name || User.IsInRole("Admin"))
+                                    {
+                                        <a class="active" href="@Url.Action("Delete", "Post", new { id = c.CommentId, ids = c.ArticleId })"><i class="fa fa-fw fa-trash-o"></i>   </a>
+
+                                        <br /><br />
+                                    }
+                                     @if (User.IsInRole("Admin"))
+                                     {
+                                       <div class="alert alert-info started" role="alert">
+                                        Answered by
+                                        <a href="@Url.Action("profileDetail", "Profile", new { user = c.User_n })"> @Html.Raw(c.User_n) </a>
+                                        <br />
+                                        <i>@c.ThisDateTime</i>
+                                    </div>
+                                    <br />
+                                         var mark_sts = true;
+                                         if (c.Status_Com == mark_sts)
+                                         {
+                                    <div style="position:absolute;left:200px;font-size:11px;font-style:italic;color:gray" class="alert">
+                                        Accepted  by                                       
+                                        <a href="@Url.Action("profileDetail", "Profile", new { user = c.Marked_by })"> @Html.Raw(c.Marked_by) </a>
+                                       
+                                        <i>@c.Marked_on</i>
+                                    </div>
+                                         }
+                                     }
+                                     else
+                                     {
+                                        <br />
+                                        <div class="alert alert-info started" role="alert">
+
+                                        Answered on
+                                         <br />
+                                        <i>@c.ThisDateTime</i>
+                                    </div>
+                                     }
+                                </div>
+                                
+                                    <br />
+                                    <br />
+                                </div>
+                            }
+                            else
+                            {
+                                if (User.IsInRole("Admin"))
+                                {
+                                <div class="question-summary narrow">
+
+                        <div class="cp">
+                            <div class="votes">
+                                <div class="col-sm-12" style="bottom:35px;left:15px">
+
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        var count = 1;
+                                        foreach (string modelItemd in Model.getTags.Split(','))
+                                        {
+                                            var ccnt = Model.getTags.Split(',').Count();
+
+
+                                            if (modelItemd == ViewBag.Tags)
+                                            {
+                                                <label class="form-group" style="color:#45A163 !important; top:50px">
+                                                    @Html.CheckBoxFor(modelItem => c.Status_Com,
+                                  new { @id = c.CommentId, @class = "with-font" })
+                                                    <label for="Maskasanswer">  </label>
+                                                    <br />Mark As Answer
+                                                </label>
+
+                                                break;
+                                            }
+
+                                            else
+                                            {
+                                                if (ccnt <= count)
+                                                {
+                                                    <label class="form-group" style="color:darkslategrey !important;">
+                                                        @Html.CheckBoxFor(modelItem => c.Status_Com,
+          new { @id = c.CommentId, @class = "with-font", @disabled = "disabled" })
+                                                        <label for="Maskasanswer">  </label> <br /> No Access
+                                                    </label>
+                                                }
+                                            }
+                                            count = count + 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <label class="form-group">
+                                            @Html.CheckBoxFor(modelItem => c.Status_Com,
+                  new { @id = c.CommentId, @class = "with-font", @disabled = "disabled" })
+
+                                            <label for="Maskasanswer">  </label>
+                                        </label>
+                                    }
+                                </div>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div class="col-sm-12" style="right: 60px;bottom: 110px;">
+                                        <label class="form-group" style="color:rgba(51, 122, 183, 1) !important; top:50px">
+                                            @Html.CheckBoxFor(modelItem => c.Com_mark,
+              new { @id = c.CommentId, @class = "with-fo" })
+                                            <label for="Maskasanswer"> </label>
+                                            <br /> Publish
+                                        </label>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div class="summar" style="width:460Px;">
+                            @Html.Raw(c.Comments.Replace("\n", "<br />")) &nbsp;
+                            @if (c.User_n == User.Identity.Name || User.IsInRole("Admin"))
+                            {
+                                <a class="active" href="@Url.Action("Delete", "Post", new { id = c.CommentId, ids = c.ArticleId })"><i class="fa fa-fw fa-trash-o"></i>   </a>
+
+                                        <br /><br />
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <div class="alert alert-info started" role="alert">
+                                    Answered by
+                                    <a href="@Url.Action("profileDetail", "Profile", new { user = c.User_n })"> @Html.Raw(c.User_n) </a>
+                                    <br />
+                                    <i>@c.ThisDateTime</i>
+                                </div>
+                                    <br />
+                                var mark_sts = true;
+                                if (c.Status_Com == mark_sts)
+                                {
+                                    <div style="position:absolute;left:200px;font-size:11px;font-style:italic;color:gray" class="alert">
+                                        Accepted  by
+                                        <a href="@Url.Action("profileDetail", "Profile", new { user = c.Marked_by })"> @Html.Raw(c.Marked_by) </a>
+
+                                        <i>@c.Marked_on</i>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="alert alert-info started" role="alert">
+
+                                    Answered on
+                                    <br />
+                                    <i>@c.ThisDateTime</i>
+                                </div>
+                            }
+                        </div>
+
+                        <br />
+                        <br />
+                    </div>}
+                                
+                            }
+                        }
+                        <div class="col-md-12">
+
+                            @Html.Partial("_CommentBox")
+
+                        </div>
+                    </div>
+
+                <br />  <br />  <br />   <br />
+                <div id="sidebar" class="alert alert-dismissible alert-warning" style="height: auto; margin-right: 20px; margin-left: 680px;">
+                    <h4 class="alert alert-heading">Important points to keep in mind!! </h4>
+                    <hr class="new2">
+                    <h5 class="text-secondary"><b>Is your answer specific to Infraction? </b></h5>
+                    
+                    <p class="mb-0">
+                        <span class="dingus">►</span>
+                        <small>
+                             Please provide samples(Account specific)                        
+                              while posting an infraction </small> 
+                        
+                    </p>
+                    <p><span class="dingus">►</span><small>Users can connect with <code>Moderator</code> to view samples for further analysis  </small></p>
+                    <p><span class="dingus">►</span><small>Every infraction would be moderated by<code>Moderator</code>  of respective track  </small></p>
+                    <p class="b"><small>Infraction is closed once a response is verified by a moderator and will be highlighted in green</small></p>
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<br /><br />
+<br /><br />
+<br />
+<!-- FOOTER -->
+<div class="container-fluid footer marg30" style="position:relative">
+    <!-- FOOTER COLUMN ONE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">How it works</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Action("UserProfile", "Post")#div6">Details about infraction portal</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN ONE -->
+    <!-- FOOTER COLUMN TWO -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Categories</div>
+            <div class="footer-body">
+                <ul>
+
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div1")">Infractions</a> </li>
+                    <li> <a href="@Url.Action("About", "Home")">OTC</a> </li>
+                    <li> <a href="@Url.Action("Tags", "Post")">Tags</a> </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN TWO -->
+    <!-- FOOTER COLUMN THREE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Popular Asks</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Rewards</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div4")">Rate a specific Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div3")">How to Post Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Know more about Badges</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN THREE -->
+</div>
+<!-- END FOOTER -->
+<!-- COPYRIGHT INFO -->
+<div class="container-fluid footer-copyright marg30" style="position:relative">
+    <div class="container">
+        <div class="pull-left">
+            Copyright © 2019 HCL Infraction portal
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    function SCRate() {
+        for (var i = 1; i <= @totalRating; i++) {
+            $("#sRate" + i).attr('class', 'starGlowN');
+        }
+    }
+    $(function(){
+        SCRate();
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(function(){
+
+        $(document).on("click","input.with-font", function (e) {
+            var _this=$(this);
+            var isChecked = _this.is(':checked');
+            $.post("@Url.Action("Updatecheck","Post")?id="+_this.attr("id")+
+                                           "&newValue="+isChecked,function(data){
+                                               // do something with the response
+                                           });
+
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $(function(){
+
+        $(document).on("click","input.with-fo", function (e) {
+            var _this=$(this);
+            var isChecked = _this.is(':checked');
+            $.post("@Url.Action("Updatecheck", "ArticlesComments")?id="+_this.attr("id")+
+                                           "&newValue="+isChecked,function(data){
+                                               // do something with the response
+                                           });
+
+        });
+    });
+
+</script>
+

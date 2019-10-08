@@ -1,0 +1,107 @@
+﻿@model AspNetRoleBasedSecurity.Models.Tags  
+
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <br>
+            <ul class="nav nav-pills nav-stacked active vl" style="height:800px">
+                @if (User.IsInRole("Admin"))
+                {
+                    <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                else
+                {
+                    <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+                <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+                <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+            </ul><br>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Update Infraction Details</h4>
+                <hr />
+                <div>
+                    @Html.ActionLink("<< Back to Details", "Contact", new { Id = Model.Id })
+                </div>
+                <hr />
+            </div>
+            <div class="col-sm-7">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+               
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Track_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.HiddenFor(model => model.Track_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripition, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Descripition, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descripition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BC, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.BC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CC, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.CC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EU, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.EU, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EU, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.On_time, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.On_time, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.On_time, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <br>
+               
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Updates, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8" style="width:470px">
+                   
+                        @Html.TextAreaFor(model => model.Updates, new { @class = "form-control", @cols = 10, @rows = 15, @style = "width:102%", @placeholder = "Subject" })
+                        @Html.ValidationMessageFor(model => model.Updates, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <hr style="border-top-color: white; border-top-width: medium; border-top-style: none;" />          
+               
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

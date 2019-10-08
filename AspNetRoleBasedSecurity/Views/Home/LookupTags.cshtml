@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "LookupTags";
+}
+
+<input class="search" type="text" id="postTags"  />
+
+<link href="/Content/jquery.autocomplete.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<script type="text/javascript" src="/Scripts/jquery-1.2.6.js"></script>
+
+
+<script type="text/javascript" src="/Scripts/jquery.autocomplete.js"></script>
+
+
+<script type="text/javascript">
+
+ $(document).ready(function()
+
+ {
+
+   $("#postTags").autocomplete('<%=Url.Action("LookupTags", "Utilities") %>',
+
+   {
+   dataType: 'json',
+
+      parse: function(data)
+
+        {
+
+          var rows = new Array();
+
+            for (var i = 0; i < data.length; i++)
+
+            {
+
+                rows[i] = { data: data[i], value: data[i].Tag, result: data[i].Tag };
+
+            }
+
+            return rows;
+
+         },
+
+        formatItem: function(row, i, max)
+
+        {
+
+             return row.Tag;
+
+        },
+
+       width: 300,
+
+        highlight: false,
+
+         multiple: true,
+
+        multipleSeparator: ","
+
+    });
+
+});
+
+ </script>

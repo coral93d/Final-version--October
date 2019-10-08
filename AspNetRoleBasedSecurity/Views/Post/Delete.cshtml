@@ -1,0 +1,48 @@
+﻿@model AspNetRoleBasedSecurity.Models.ArticlesComment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.CommentId)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(Model => Model.CommentId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Rating)
+        </dd>
+
+        
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+          
+        </div>
+    }
+</div>

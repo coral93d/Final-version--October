@@ -1,0 +1,209 @@
+﻿@model IEnumerable<AspNetRoleBasedSecurity.Models.EditUserViewModel>
+
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="container-fluid">
+
+    <div class="col-sm-2 wrapper">
+        <div class="sidebar-hotel">
+            <div class="side-in">
+
+                <div class="sidenav">
+                    <br />
+                    <ul class="nav nav-pills nav-stacked active vl">
+
+                        <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>
+
+                        <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+
+                        <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                        <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+                    </ul><br>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="content-hotel">       
+
+            <br />
+            <p>
+                @Html.ActionLink("Create New", "Register")
+            </p>
+       
+            @if (User.IsInRole("CanEdit"))
+            {
+                
+        <div class="col-md-offset-1 col-md-12">
+            <a input type="submit" class="btn btn-default fa fa-edit" href="@Url.Action("Index", "ArticlesComments")" style="position: absolute; right: 79px; bottom: 7px">
+                Accept Comments
+            </a>
+        </div>
+        <div class="col-md-offset-1 col-md-10">
+            <a input type="submit" class="btn btn-default fa fa-database" href="@Url.Action("Index", "Test")" style="position: absolute; right: 79px; bottom: 7px">
+                Bulk Upload
+            </a>
+        </div>
+        <div class="col-md-offset-1 col-md-8">
+            <a input type="submit" class="btn btn-default fa fa-edit" href="~/Report.aspx" style="position: absolute; right: 49px; bottom: 7px">
+                Report
+            </a>
+        </div>
+            }
+            else { 
+        <div class="col-md-offset-1 col-md-11">
+            <a input type="submit" class="btn btn-default fa fa-edit" href="~/Report.aspx" style="position: absolute; right: 49px; bottom: 7px">
+               Report
+            </a>
+        </div>
+            }
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>
+                            UserName
+                        </th>
+                        <th>
+                            FirstName
+                        </th>
+                        <th>
+                            LastName
+                        </th>
+                        <th>
+                            Email
+                        </th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var logus = ViewBag.loguser;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.UserName }) |
+
+                                @if (logus == "SuperAdmin")
+                                {
+
+                                @Html.ActionLink("Roles", "UserRoles", new { id = item.UserName }) 
+
+                                }
+
+                               | @Html.ActionLink("Delete", "Delete", new { id = item.UserName })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+
+</div>
+
+<br /><br>
+<div class="container-fluid footer marg30"style="position:relative">
+    <!-- FOOTER COLUMN ONE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">How it works</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Action("UserProfile", "Post")#div6">Details about infraction portal</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN ONE -->
+    <!-- FOOTER COLUMN TWO -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Categories</div>
+            <div class="footer-body">
+                <ul>
+
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div1")">Infractions</a> </li>
+                    <li> <a href="@Url.Action("About", "Home")">OTC</a> </li>
+                    <li> <a href="@Url.Action("Tags", "Post")">Tags</a> </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN TWO -->
+    <!-- FOOTER COLUMN THREE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Popular Asks</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Rewards</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div4")">Rate a specific Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div3")">How to Post Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Know more about Badges</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN THREE -->
+
+
+</div>
+<!-- END FOOTER -->
+<!-- COPYRIGHT INFO -->
+<div class="container-fluid footer-copyright marg30" style="position:relative">
+    <div class="container">
+        <div class="pull-left">
+            Copyright © 2018 HCL Infraction portal
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="~/Content/DataTables/datatables.css">
+
+
+
+<script type="text/javascript" charset="utf8" src="~/Content/DataTables/datatables.js"></script>
+
+
+
+<script>
+
+$(document).ready( function () {
+
+
+
+    $("#table_id").DataTable();
+
+
+
+} );
+
+</script>

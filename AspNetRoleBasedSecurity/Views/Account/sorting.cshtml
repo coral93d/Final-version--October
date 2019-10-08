@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<AspNetRoleBasedSecurity.Models.EditUserViewModel>
+
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "sorting";
+}
+
+
+@{
+    Layout = null;
+}
+
+<h2>sorting</h2>
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+<div class="code-cut">
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.LastName).Titled("Scheme ID").Filterable(true);
+    columns.Add(c => c.Email).Titled("SchemeName").Filterable(true);
+    
+
+}).WithPaging(2).Sortable(true)
+</div>  

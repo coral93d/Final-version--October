@@ -1,0 +1,588 @@
+﻿@model AspNetRoleBasedSecurity.Models.profileDetail
+
+@{
+    ViewBag.Title = "MasterDetail";
+}
+
+@{ int runningTotal = 0; }
+@{ var runningSum = 0; }
+@{ decimal totalRating; }
+
+
+
+@foreach (var item in Model.Post)
+{
+    var comments = Model.Comments.Where(Modelitems => Modelitems.ArticleId.Equals(item.Id)).ToList();
+    var Ratings = Model.Comments.Where(Modelitems => Modelitems.ArticleId.Equals(item.Id)).Sum(Modelitems => Modelitems.Rating);
+    runningTotal += comments.Count();
+    runningSum += Ratings.Value;
+}
+
+@{decimal rating = 0;
+    if ((@runningSum != 0) && (@runningTotal != 0))
+    {
+        rating = (@runningSum / @runningTotal);
+        totalRating = decimal.Parse(rating.ToString());
+    }
+
+    else
+    {
+        rating = 0;
+        totalRating = decimal.Parse(rating.ToString());
+
+    }
+
+}
+
+<div class="container-fluid">
+    <div class="col-sm-2 wrapper">
+        <div class="sidebar-hotel">
+            <div class="side-in">
+
+                <div class="sidenav">
+                    <br>
+
+                    <ul class="nav nav-pills nav-stacked active vl">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                        else
+                        {
+                            <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                        <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+
+                        <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                        <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+
+
+                    </ul><br>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+   
+        <div class="content-hotel">
+            <div class="left-right">
+                <div class="left">
+                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        <div class="row" id="user-profile">
+
+                            <div class="col-lg-11 col-md-8 col-sm-9 col-md-offset-0">
+
+                                <div class="main-box clearfix">
+                                    <div class="profile-header">
+
+                                        <h3><span>User Profile</span></h3>
+                                    </div>
+                                    <hr />
+                                    <div class="grid gs24">
+                                        <div class="grid--cell fl-shrink0 ws2 overflow-hidden">
+
+                                            <div class="profile-avatar s-card mb16 p12 bc-black-3 ta-center" id="avatar-card">
+                                                <div class="avatar mt16 mx-auto overflow-hidden">
+                                                    @foreach (var item in Model.UserProfile)
+                                                    {
+
+                                                        var gen = "Male";
+                                                        var gen1 = "Female";
+                                                        var professionalm = "Professional";
+                                                        var casualm = "casual";
+
+
+                                                        if (item.Gender == gen)
+
+                                                        {
+                                                            if (item.ProfilePictureTheme == professionalm)
+                                                            {
+                                                                <div class="gravatar-wrapper-164">
+
+                                                                    <img width="164" height="164" class="avatar-user" alt="" src="~/Images/d1.jpg">
+
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                if (item.ProfilePictureTheme == casualm)
+
+                                                                {
+                                                                    <div class="gravatar-wrapper-164">
+
+                                                                        <img width="164" height="164" class="avatar-user" alt="" src="~/Images/CasualMale_1.jpg">
+
+                                                                    </div>
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <div class="gravatar-wrapper-164">
+
+                                                                        <img width="164" height="164" class="avatar-user" alt="" src="~/Images/StandardMale_1.jpg">
+
+                                                                    </div>
+                                                                }
+                                                            }
+                                                        }
+
+
+
+                                                        else if (item.Gender == gen1)
+
+                                                        {
+
+                                                            if (item.ProfilePictureTheme == professionalm)
+                                                            {
+                                                                <div class="gravatar-wrapper-164">
+
+                                                                    <img width="164" height="164" class="avatar-user" alt="" src="~/Images/ProffFemale_1.jpg">
+
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                if (item.ProfilePictureTheme == casualm)
+
+                                                                {
+                                                                    <div class="gravatar-wrapper-164">
+
+                                                                        <img width="164" height="164" class="avatar-user" alt="" src="~/Images/CasualFemale_1.jpg">
+
+                                                                    </div>
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <div class="gravatar-wrapper-164">
+
+                                                                        <img width="164" height="164" class="avatar-user" alt="" src="~/Images/StandardFemale_1.jpg">
+
+                                                                    </div>
+                                                                }
+                                                            }
+                                                        }
+
+                                                        else
+
+                                                        {
+
+                                                            <div class="gravatar-wrapper-164">
+
+                                                                <img width="164" height="164" class="avatar-user" alt="" src="@Url.Content("~/Content/images/Empty.png")">
+
+                                                            </div>
+
+                                                        }
+
+                                                    }
+
+
+                                                </div>
+
+                                                <div title="reputation" class="my12 fw-normal lh-sm">
+                                                    <div class="grid gs8 grid__center">
+                                                        <div class="profile-stars">
+
+                                                            <span class="fa fa-star-o" id="sRate1"></span>
+                                                            <span class="fa fa-star-o" id="sRate2"></span>
+                                                            <span class="fa fa-star-o" id="sRate3"></span>
+                                                            <span class="fa fa-star-o" id="sRate4"></span>
+                                                            <span class="fa fa-star-o" id="sRate5"></span>
+                                                            <span>Rating</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @foreach (var item in Model.UserProfile)
+
+                                        {
+                                            var Infra = Model.Post.ToList();
+                                            var comm = Model.Comments.Where(Modelitems => Modelitems.User_n.Equals(item.user)).ToList();
+
+                                            <div class="grid--cell fl1 wmn0">
+                                                <div class="grid gs16">
+                                                    <div class="grid--cell fl1 overflow-x-hidden overflow-y-auto pr16 profile-user--about about empty-bio">
+                                                        <div class="grid fd-column gs8 gsy">
+                                                            <div class="grid--cell">
+                                                                <h2 class="grid gs12 fw-wrap ai-center fs-headline1 lh-xs fw-bold fc-dark wb-break-all profile-user--name grid--cell" style="padding:0px 0px;">
+                                                                    @item.user (@Html.DisplayFor(modelItem => item.Dname))
+                                                                </h2>
+
+                                                               
+                                                            </div>
+                                                            <br />
+                                                            <h3 class="grid--cell fs-body3 fc-light lh-sm profile-user--role current-position">
+                                                                @Html.DisplayNameFor(modelItem => item.Position) :   @Html.DisplayFor(modelItem => item.Position)
+                                                            </h3>
+                                                            <div class="grid--cell mt16 fs-body2 profile-user--bio ">
+                                                                <p class="fc-light">
+                                                                    @Html.DisplayNameFor(modelItem => item.Process) : @foreach (string modelItem in item.getProcess.Split(','))
+                                                                    { @modelItem
+                                                                    }
+                                                                </p>
+
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="grid--cell fl-shrink0 pr24">
+                                                        <div class="fc-medium mb16">
+                                                            <div class="grid gs12">
+                                                                <div class="grid--cell">
+                                                                    <div class="grid fd-column">
+                                                                        <div class="grid--cell fs-body3 fc-dark fw-bold">@comm.Count()</div>
+                                                                        <div class="grid--cell">Comments</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="grid--cell">
+                                                                    <div class="grid fd-column">
+                                                                        <div class="grid--cell fs-body3 fc-dark fw-bold">@Infra.Count()</div>
+                                                                        <div class="grid--cell">Infractions</div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="ps-relative s-anchors s-anchors__inherit">
+                                                            <ul class="list-reset grid gs8 gsy fd-column fc-medium">
+                                                                <li class="grid--cell ow-break-word">
+                                                                    <div class="grid gs8 gsx ai-center">
+                                                                        <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon iconLocation" aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><path d="M 8.1 17.7 S 2 9.9 2 6.38 A 6.44 6.44 0 0 1 8.5 0 C 12.09 0 15 2.86 15 6.38 C 15 9.91 8.9 17.7 8.9 17.7 c -0.22 0.29 -0.58 0.29 -0.8 0 Z m 0.4 -8.45 a 2.75 2.75 0 1 0 0 -5.5 a 2.75 2.75 0 0 0 0 5.5 Z" /></svg></div>
+                                                                        <div class="grid--cell fl1">@Html.DisplayFor(modelItem => item.Location)</div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="grid--cell ow-break-word">
+                                                                    <div class="grid gs8 gsx ai-center">
+                                                                        <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon icon-office" aria-hidden="true" viewBox="0 0 32 32" width="18" height="18"><path d="M0 32h16v-32h-16v32zM10 4h4v4h-4v-4zM10 12h4v4h-4v-4zM10 20h4v4h-4v-4zM2 4h4v4h-4v-4zM2 12h4v4h-4v-4zM2 20h4v4h-4v-4zM18 10h14v2h-14zM18 32h4v-8h6v8h4v-18h-14z" /></svg></div>
+
+                                                                        <div class="grid--cell fl1">@Html.DisplayFor(modelItem => item.Company)</div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="grid--cell ow-break-word">
+                                                                    <div class="grid gs8 gsx ai-center">
+                                                                        <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon iconHistory" aria-hidden="true" viewBox="0 0 19 18" width="19" height="18"><path d="M 3 9 a 8 8 0 1 1 3.73 6.77 L 8.2 14.3 A 6 6 0 1 0 5 9 l 3.01 -0.01 l -4 4 l -4 -4 h 3 Z m 7 -4 h 1.01 L 11 9.36 l 3.22 2.1 l -0.6 0.93 L 10 10 V 5 Z" /></svg></div>
+                                                                        <div class="grid--cell fl1">
+                                                                            Member since <span title="2018-07-03 13:54:36Z">@Html.DisplayFor(modelItem => item.LogDate)</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                @foreach (var infra in Model.UserProfile)
+                                                                {
+                                                                    if (@Infra.Count() >= 1 && @Infra.Count() <= 10)
+                                                                    {
+                                                                        <li class="grid--cell ow-break-word">
+                                                                            <div class="grid gs8 gsx ai-center">
+                                                                                <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon icon-paint-format" style="color:rosybrown" aria-hidden="true" viewBox="0 0 32 32" width="18" height="18"><path d="M26 6v-4h-20v4h-6v4c0 3.314 2.686 6 6 6 0.627 0 1.232-0.096 1.801-0.275 1.443 2.063 3.644 3.556 6.199 4.075v6.2h-2c-2.209 0-4 1.791-4 4h16c0-2.209-1.791-4-4-4h-2v-6.2c2.555-0.519 4.756-2.012 6.199-4.075 0.568 0.179 1.173 0.275 1.801 0.275 3.314 0 6-2.686 6-6v-4h-6zM6 13.625c-1.999 0-3.625-1.626-3.625-3.625v-2h3.625v2c0 1.256 0.232 2.457 0.655 3.565-0.213 0.039-0.431 0.060-0.655 0.060zM29.625 10c0 1.999-1.626 3.625-3.625 3.625-0.224 0-0.442-0.021-0.655-0.060 0.423-1.107 0.655-2.309 0.655-3.565v-2h3.625v2z" /></svg></div>
+                                                                                <div class="grid--cell fl1">Badge: <span>Bronze</span></div>
+                                                                            </div>
+                                                                        </li>
+                                                                    }
+                                                                    else
+                                                            if (@Infra.Count() > 10 && @Infra.Count() <= 50)
+                                                                    {
+                                                                        <li class="grid--cell ow-break-word">
+                                                                            <div class="grid gs8 gsx ai-center">
+                                                                                <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon icon-paint-format" style="color:#808080" aria-hidden="true" viewBox="0 0 32 32" width="18" height="18"><path d="M26 6v-4h-20v4h-6v4c0 3.314 2.686 6 6 6 0.627 0 1.232-0.096 1.801-0.275 1.443 2.063 3.644 3.556 6.199 4.075v6.2h-2c-2.209 0-4 1.791-4 4h16c0-2.209-1.791-4-4-4h-2v-6.2c2.555-0.519 4.756-2.012 6.199-4.075 0.568 0.179 1.173 0.275 1.801 0.275 3.314 0 6-2.686 6-6v-4h-6zM6 13.625c-1.999 0-3.625-1.626-3.625-3.625v-2h3.625v2c0 1.256 0.232 2.457 0.655 3.565-0.213 0.039-0.431 0.060-0.655 0.060zM29.625 10c0 1.999-1.626 3.625-3.625 3.625-0.224 0-0.442-0.021-0.655-0.060 0.423-1.107 0.655-2.309 0.655-3.565v-2h3.625v2z" /></svg></div>
+                                                                                <div class="grid--cell fl1">Badge: <span>Silver</span></div>
+                                                                            </div>
+                                                                        </li>
+                                                                    }
+                                                                    else
+                                                            if (@Infra.Count() > 50)
+                                                                    {
+                                                                        
+                                                                        <li class="grid--cell ow-break-word">
+                                                                            <div class="grid gs8 gsx ai-center">
+                                                                                <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon icon-paint-format" style="color:gold" aria-hidden="true" viewBox="0 0 32 32" width="18" height="18"><path d="M26 6v-4h-20v4h-6v4c0 3.314 2.686 6 6 6 0.627 0 1.232-0.096 1.801-0.275 1.443 2.063 3.644 3.556 6.199 4.075v6.2h-2c-2.209 0-4 1.791-4 4h16c0-2.209-1.791-4-4-4h-2v-6.2c2.555-0.519 4.756-2.012 6.199-4.075 0.568 0.179 1.173 0.275 1.801 0.275 3.314 0 6-2.686 6-6v-4h-6zM6 13.625c-1.999 0-3.625-1.626-3.625-3.625v-2h3.625v2c0 1.256 0.232 2.457 0.655 3.565-0.213 0.039-0.431 0.060-0.655 0.060zM29.625 10c0 1.999-1.626 3.625-3.625 3.625-0.224 0-0.442-0.021-0.655-0.060 0.423-1.107 0.655-2.309 0.655-3.565v-2h3.625v2z" /></svg></div>
+                                                                                <div class="grid--cell fl1">Badge: <span> Gold</span></div>
+                                                                            </div>
+                                                                        </li>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <li class="grid--cell ow-break-word">
+                                                                            <div class="grid gs8 gsx ai-center">
+                                                                                <div class="grid--cell fc-black-350"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon icon-paint-format" aria-hidden="true" viewBox="0 0 32 32" width="18" height="18"><path d="M26 6v-4h-20v4h-6v4c0 3.314 2.686 6 6 6 0.627 0 1.232-0.096 1.801-0.275 1.443 2.063 3.644 3.556 6.199 4.075v6.2h-2c-2.209 0-4 1.791-4 4h16c0-2.209-1.791-4-4-4h-2v-6.2c2.555-0.519 4.756-2.012 6.199-4.075 0.568 0.179 1.173 0.275 1.801 0.275 3.314 0 6-2.686 6-6v-4h-6zM6 13.625c-1.999 0-3.625-1.626-3.625-3.625v-2h3.625v2c0 1.256 0.232 2.457 0.655 3.565-0.213 0.039-0.431 0.060-0.655 0.060zM29.625 10c0 1.999-1.626 3.625-3.625 3.625-0.224 0-0.442-0.021-0.655-0.060 0.423-1.107 0.655-2.309 0.655-3.565v-2h3.625v2z" /></svg></div>
+                                                                                <div class="grid--cell fl1">Badge: <span> None</span></div>
+                                                                            </div>
+                                                                        </li>}
+                                                                }
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <div class="col-sm-pull-12 col-md-offset-0">
+                                        <div class="tabs-wrapper profile-tabs">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab-activity" data-toggle="tab">Infractions</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+
+                                                <div class="tab-pane fade in active" id="tab-activity">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div id="qlist-wrapper" class="flush-left">
+                                                                <div id="question-mini-list">
+                                                                    <div>
+
+
+                                                                        <!-- Table Values -->
+                                                                        @foreach (var item in Model.Post)
+
+                                                                        {
+
+                                                                            var comments = Model.Comments.Where(Modelitems => (Modelitems.ArticleId.Equals(item.Id)) && (Modelitems.Com_mark) == true).ToList();
+                                                                            var cnt = Model.Comments.Where(Modelitems => (Modelitems.ArticleId == (item.Id)) && (Modelitems.Status_Com) == true).ToList();
+                                                                            var Ratings = Model.Comments.Where(Modelitems => Modelitems.ArticleId.Equals(item.Id)).Sum(Modelitems => Modelitems.Rating);
+                                                                            var currentStatus = "Accepted";
+
+                                                                            if (item.Status == currentStatus)
+                                                                            {
+
+                                                                            <div class="question-summary narrow">
+                                                                                <div class="cp" style="width:200px">
+                                                                                    <div class="vote" style="color:#000000">
+                                                                                        <div class="mini-counts" style="color:#000000"><span title="0 votes">@Ratings</span></div>
+                                                                                        <div>votes</div>
+                                                                                    </div>
+                                                                                    @if (@comments.Count() != 0)
+                                                                                    {
+
+                                                                                        if (@cnt.Count() != 0)
+                                                                                        {
+                                                                                            <div title="one of the answers was accepted as the correct answer" class="status answered-accepted">
+
+                                                                                                <div class="mini-counts"><span title="0 answers">@comments.Count()</span></div>
+
+                                                                                                <div>answers</div>
+
+                                                                                            </div>
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <div class="status answered">
+
+                                                                                                <div class="mini-counts"><span title="0 answers">@comments.Count()</span></div>
+
+                                                                                                <div>answers</div>
+
+                                                                                            </div>
+
+                                                                                        }
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <div class="status unanswered" style="color:#000000">
+
+                                                                                            <div class="mini-counts"><span title="0 answers">@comments.Count()</span></div>
+
+                                                                                            <div>answers</div>
+
+                                                                                        </div>
+                                                                                    }
+                                                                                    <div class="views" style="color:#000000">
+                                                                                        @if (item.PageView >= 100000)
+                                                                                        {
+                                                                                            var page = (item.PageView) / 1000 + "K";
+
+                                                                                            <div class="mini-counts" style="color:#000000"><span title="0 views">@page</span></div>
+
+                                                                                        }
+                                                                                        else
+                                                                    if (item.PageView >= 10000)
+                                                                                        {
+                                                                                            var pag = ((item.PageView) / 1000D).ToString("0.#") + "K";
+
+
+                                                                                            <div class="mini-counts" style="color:#000000"><span title="0 views">@pag</span></div>}
+
+
+                                                                                        else
+                                                                                        {
+                                                                                            var pa = item.PageView.ToString("0.#");
+                                                                                            <div class="mini-counts" style="color:#000000"><span title="0 views">@pa</span></div>
+                                                                                        }
+                                                                                        <div>views</div>
+                                                                                    </div>
+
+
+
+                                                                                </div>
+
+
+                                                                                <div class="summ">
+                                                                                    <h4>
+
+                                                                                        <a class="active" href="@Url.Action("ViewDetails", "Post", new { Id = item.Id })">
+                                                                                            @item.Title
+
+
+                                                                                        </a>
+                                                                                    </h4>
+
+                                                                                    <div class="tags">
+                                                                                        @foreach (string modelItem in item.getTags.Split(','))
+
+                                                                                        {
+                                                                                            <div class="btn btn-info btn-xs popup">
+                                                                                                @modelItem
+                                                                                            </div>
+                                                                                        }
+
+
+                                                                                    </div>
+
+                                                                                    <br>
+                                                                                    <div class="alert alert-info started" role="alert">
+
+                                                                                        Posted by
+                                                                                        <a>
+                                                                                            @Html.DisplayFor(modelItem => item.user)
+
+                                                                                        </a>
+
+                                                                                        <br> <i>@Html.DisplayFor(modelItem => item.DatePosted)</i>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            }
+
+                                                                        }
+
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <br />
+
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+   <!-- FOOTER -->
+<div class="container-fluid footer marg30" style="position:relative">
+    <!-- FOOTER COLUMN ONE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">How it works</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Action("UserProfile", "Post")#div6">Details about infraction portal</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN ONE -->
+    <!-- FOOTER COLUMN TWO -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Categories</div>
+            <div class="footer-body">
+                <ul>
+
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div1")">Infractions</a> </li>
+                    <li> <a href="@Url.Action("About", "Home")">OTC</a> </li>
+                    <li> <a href="@Url.Action("Tags", "Post")">Tags</a> </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN TWO -->
+    <!-- FOOTER COLUMN THREE -->
+    <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+        <div class="panel-transparent">
+            <div class="footer-heading">Popular Asks</div>
+            <div class="footer-body">
+                <ul>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Rewards</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div4")">Rate a specific Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div3")">How to Post Infraction</a> </li>
+                    <li> <a href="@Url.Content("~/Post/UserProfile/#div6")">Know more about Badges</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER COLUMN THREE -->
+
+</div>
+<!-- END FOOTER -->
+<!-- COPYRIGHT INFO -->
+<div class="container-fluid footer-copyright marg30" style="position:relative">
+    <div class="container">
+        <div class="pull-left">
+            Copyright © 2019 HCL Infraction portal
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <script>
+        function SCRate() {
+            for (var i = 1; i <= @totalRating; i++) {
+                $("#sRate" + i).attr('class', 'fa fa-star');
+            }
+        }
+        $(function(){
+            SCRate();
+        });
+    </script>

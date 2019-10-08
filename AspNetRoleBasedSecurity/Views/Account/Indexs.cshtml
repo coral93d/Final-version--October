@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<AspNetRoleBasedSecurity.Models.UserViewModel>
+
+<div class="row">
+    <h4>Users</h4>
+
+    @foreach (var user in Model)
+    {
+        <p>
+            <strong>
+                @user.Usernamee | @user.Emaill | @user.Rolee
+            </strong>
+        </p>
+    }
+</div>

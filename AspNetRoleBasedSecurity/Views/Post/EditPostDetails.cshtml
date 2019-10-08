@@ -1,0 +1,147 @@
+﻿@model AspNetRoleBasedSecurity.Models.PostModel
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <br>
+
+            <ul class="nav nav-pills nav-stacked active vl"style="height:800px">
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li> <a class="active" href="@Url.Action("GetAllPost", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+                else
+                {
+                    <li> <a class="active" href="@Url.Action("GetAllPostUser", "Post")"><i class="fa fa-fw fa-home"></i> Home</a></li>}
+
+                <li> <a class="active" href="@Url.Action("Tags", "Post")"><i class="fa fa-fw fa-tag"></i> Tracks</a></li>
+
+                <li> <a class="active" href="@Url.Action("Users", "Post")"><i class="fa fa-fw fa-users"></i> Users</a></li>
+
+                <li> <a class="active" href="@Url.Action("UserProfile", "Post")"><i class="fa fa-file"></i> About</a></li>
+
+
+
+            </ul><br>
+
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Update Infraction Details</h4>
+                <hr />
+                <div>
+                    @Html.ActionLink("Back to Details", "GetAllPost")
+                </div>
+                <hr />
+            </div>
+            <div class="col-sm-7">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.PageView)
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.getTags, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.getTags, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.getTags, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               
+             
+                <div class="form-group">
+                    @Html.LabelFor(model => model.user, htmlAttributes: new { @class = "control-label col-md-2" })
+               
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.user, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.user, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DatePosted, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DatePosted, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DatePosted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Samples, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Samples, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Samples, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-8" style="width:470px">
+
+                        @Html.TextAreaFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @style = "width:470px" } })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                       
+                    </div>                  
+                </div>
+                <br><br /><br><br />
+                <hr style="border-top-color: white; border-top-width: medium; border-top-style: none;"/>
+                <hr style="border-top-color: white; border-top-width: medium; border-top-style: none;"/>
+                <div class="form-group">
+                   
+                    @if (User.IsInRole("Admin")) {
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("Status", new List<SelectListItem>
+        { new SelectListItem { Text = "Accepted", Value = "Accepted" },
+        new SelectListItem { Text = "Refer Back", Value = "Refer Back" },
+           new SelectListItem { Text = "Rejected", Value = "Rejected" },
+            new SelectListItem { Text = "Pending", Value = "Pending" }
+        })                       
+                    </div>
+                    }
+
+                    else
+                    {
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("Status", new List<SelectListItem>
+                             { 
+                            new SelectListItem { Text = "Pending", Value = "Pending" }
+                            })
+                        </div>
+
+                    }
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,178 @@
+﻿@model AspNetRoleBasedSecurity.Models.PostModel
+
+<div class="container-fluid">
+    <div class="row content">
+    <div class="col-sm-2 sidenav">
+        <br>
+        
+        <ul class="nav nav-pills nav-stacked active">
+            <li> <a class="active" href="https://localhost:44359/post/getallpost"><i class="fa fa-fw fa-home"></i> Home</a></li>
+            <li> <a class="active" href="https://localhost:44359/Post/AddPost"><i class="fa fa-fw fa-tag"></i> Tags</a></li>
+            <li> <a class="active" href="https://localhost:44359/Post/About"><i class="fa fa-fw fa-users"></i> Users</a></li>
+            <li> <a class="active" href="https://localhost:44359/Post/Contact"><i class="fa fa-file"></i> Contact</a></li>
+
+        </ul><br>
+
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col-sm-6">
+            <br />
+            <h3>
+                <b>
+                    @Html.DisplayFor(model => model.Title)
+                </b>
+            </h3>
+
+            <div class="col-md-offset-0 col-md-12">
+              
+                <a input type="submit" class="btn btn-default" href="https://localhost:44359/Post/AddPost" style="position: absolute; right: 5px; bottom: 7px">
+                   Ask Question
+                </a>
+
+            </div>
+
+
+
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+            @Html.DisplayFor(model => model.Subject)
+
+            <hr />
+            <div class="tags">
+                <div class="btn btn-info btn-xs">
+                    @Html.DisplayFor(model => model.Tags)
+                </div>
+
+            </div>
+
+
+            <br />
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ans, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                   <textarea class="form-control" rows="15" style="width:600px" id="comment"></textarea>
+                   
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-0 col-md-12">
+
+
+                    <a input type="submit" class="btn btn-default" href="https://localhost:44359/post/getallpost">
+                        Post Your Answer
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    }
+
+        <div id="sidebar" class="ask-sidebar">
+            <div id="scroller-anchor"></div>
+            <div id="scroller">
+                <div class="s-sidebarwidget s-sidebarwidget__yellow s-anchors s-anchors__default sidebar-help" id="how-to-title">
+                    <h4 class="s-sidebarwidget--header mb0">
+                        How to Ask
+                        <a href="#title" class="js-back-to-edit-field s-sidebarwidget--action d-none md:d-inline">back <svg aria-hidden="true" class="svg-icon va-middle iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z" /></svg></a>
+                    </h4>
+                    <div class="s-sidebarwidget--content d-block">
+                        <p><b>Is your question about programming?</b></p><p>We prefer questions that can be <i>answered</i>, not just discussed.</p><p>Provide details. Share your research.</p><p>If your question is about this website, <b><a href="http://meta.stackoverflow.com">ask it on meta</a></b> instead.</p><p class="ar"><a href="/help">visit the help center &raquo;</a><br><a href="/help/how-to-ask">asking help &raquo;</a></p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div class="container-fluid footer marg30">
+        <div class="container">
+            <!-- FOOTER COLUMN ONE -->
+            <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+                <div class="panel-transparent">
+                    <div class="footer-heading">How it works</div>
+                    <div class="footer-body">
+                        <ul>
+                            <li> <a href="single-category.html">Details about infraction portal</a> </li>
+                            <li> <a href="single-category.html">one touch solution for all</a> </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END FOOTER COLUMN ONE -->
+            <!-- FOOTER COLUMN TWO -->
+            <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+                <div class="panel-transparent">
+                    <div class="footer-heading">Categories</div>
+                    <div class="footer-body">
+                        <ul>
+                            <li> <a href="single-category.html">General</a> </li>
+                            <li> <a href="single-category.html">Getting Started</a> </li>
+                            <li> <a href="single-category.html">Account Support</a> </li>
+                            <li> <a href="single-category.html">Guides</a> </li>
+                            <li> <a href="single-category.html">Payment &amp; Billing</a> </li>
+                            <li> <a href="single-category.html">Misc</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END FOOTER COLUMN TWO -->
+            <!-- FOOTER COLUMN THREE -->
+            <div class="col-xs-12 col-sm-4 col-md-4 margin-top-20">
+                <div class="panel-transparent">
+                    <div class="footer-heading">Popular Articles</div>
+                    <div class="footer-body">
+                        <ul>
+                            <li> <a href="single-article.html">How to change account password</a> </li>
+                            <li> <a href="single-article.html">How to edit order details</a> </li>
+                            <li> <a href="single-article.html">Add new user</a> </li>
+                            <li> <a href="single-article.html">Change customer details</a> </li>
+                            <li> <a href="single-article.html">Lookup existing customer in order form</a> </li>
+                            <li> <a href="single-article.html">How do I reset my password</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END FOOTER COLUMN THREE -->
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- COPYRIGHT INFO -->
+    <div class="container-fluid footer-copyright marg30">
+        <div class="container">
+            <div class="pull-left">
+                Copyright © 2018 HCL Infraction portal</a>
+            </div>
+            <div class="pull-right">
+                <i class="fa fa-facebook"></i> &nbsp;
+                <i class="fa fa-twitter"></i> &nbsp;
+                <i class="fa fa-linkedin"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
